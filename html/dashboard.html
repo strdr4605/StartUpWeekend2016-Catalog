@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="header">
+        <div class="navbar-header">
+          <ul>
+          <li id="catalog-size"><img src="images/catalog2.png"></li>
+          <li id="home"><a href="#">HOME</li>
+          </ul>
+        </div>
+    </nav>
+    <div id="sidebar-wrapper">
+      <div class="row">
+        <div >
+          <input id="input-pos">
+        </div>
+          <img src="images/bg.png" class="ui-widget-content drag" id="img1">
+          <img src="images/bg.png" class="ui-widget-content">
+          <img src="images/bg.png" class="ui-widget-content">
+          <img src="images/bg.png" class="ui-widget-content">
+          <img src="images/bg.png" class="ui-widget-content">
+
+        <div id="image-pos">
+          <img style="height: 60px;" src="images/upload.png">
+          <img src="images/save.png">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-8 col-md-offset-3" id="content">
+      <div class="page" id="work-page">
+        <!-- <div class="container" id="work-dropzone">
+          <p>Dropp</p>
+        </div> -->
+        <div class="info">
+            Summer, 2013 <br>
+            110x85cm <br>
+            Oil, canvas <br>
+            800$
+        </div>
+        <!-- <img src="images/bg.png"> -->
+      </div>
+      <ul id="pages">
+        <li><a href="#" class="btn btn-default">1</a></li>
+        <li><a href="#" class="btn btn-default">2</a></li>
+        <li><a href="#" class="btn btn-primary">Add Page</a></li>
+
+      </ul>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+    $( function() {
+        $('#content').height($(window).height() - $('#header').height());
+        $('#content').width($('#content').width() + 140)
+        $(".page").css( { "margin-left" : $('#content').width() / 2 - $('.page').width() / 2 } )
+        $("#pages").css( { "margin-left" : $('#content').width() / 2 - 140 } )
+
+        $( "#img1" ).draggable({
+          connectToSortable: "#work-page",
+          helper: "clone",
+          revert: "invalid",
+        });
+
+        $( "#work-page" ).droppable({
+          drop: function(event, ui){
+            var clone = ui.draggable.clone();
+            var removeButton = $('<span class="remove" style="cursor: pointer">REMOVE </span>');
+            clone.append(removeButton);
+            clone.addClass("new-size");
+            clone.addClass("new-location");
+            $(this).append(clone);
+            removeButton.on('click', function(){
+              clone.remove();
+            })
+          }
+      });
+    })
+    </script>
+  </body>
+</html>
